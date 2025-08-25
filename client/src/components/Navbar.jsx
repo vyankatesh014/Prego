@@ -38,6 +38,7 @@ const Navbar = () => {
       </NavLink>
 
       <div className="hidden sm:flex items-center gap-8">
+        <NavLink to ='/seller' >Seller Dashboard</NavLink>
         <NavLink to='/'>Home</NavLink>
         <NavLink to='/products'>All Product</NavLink>
         <NavLink to='/'>Contact</NavLink>
