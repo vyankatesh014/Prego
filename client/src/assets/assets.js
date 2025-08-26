@@ -1,4 +1,4 @@
-import logo from "./logo.svg";
+import logo from "./logo.png";
 import search_icon from "./search_icon.svg";
 import remove_icon from "./remove_icon.svg";
 import arrow_right_icon_colored from "./arrow_right_icon_colored.svg";
@@ -69,9 +69,20 @@ import vanilla_muffins_image from "./vanilla_muffins_image.png";
 import quinoa_image from "./quinoa_image.png";
 import brown_rice_image from "./brown_rice_image.png";
 import barley_image from "./barley_image.png";
+import Slider_image1 from "./Slider1.png";
+import Slider_image2 from "./Slider2.png";
+import Slider_image3 from "./Slider3.png";
+import Slider_image4 from "./Slider4.png";
+import Slider_image5 from "./Slider5.jpg";
+
 
 export const assets = {
   logo,
+  Slider_image1,
+  Slider_image2,
+  Slider_image3,
+  Slider_image4,
+  Slider_image5,
   search_icon,
   remove_icon,
   arrow_right_icon_colored,
