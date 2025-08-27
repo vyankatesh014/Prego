@@ -20,6 +20,7 @@ const Slider = () => {
     if (!sliderRef.current) return;
     const slideWidth = sliderRef.current.children[0].clientWidth;
     sliderRef.current.style.transform = `translateX(-${index * slideWidth}px)`;
+    setCurrentSlide(index);
   };
 
   const nextSlide = () => {
@@ -79,15 +80,15 @@ const Slider = () => {
   }, []);
 
   return (
-    <div className="flex items-center justify-center w-full px-2 md:px-6">
+    <div className="relative w-full overflow-hidden">
       {/* Previous button */}
       <button
         onClick={prevSlide}
-        className="p-1 md:p-2 bg-black/30 rounded-full hover:bg-black/50 md:mr-6 mr-2"
+        className="absolute left-2 md:left-4 top-1/2 -translate-y-1/2 z-10 p-1 md:p-2 bg-black/30 rounded-full hover:bg-black/50"
       >
         <svg
           xmlns="http://www.w3.org/2000/svg"
-          className="h-5 md:h-6 w-5 md:w-6 text-white"
+          className="h-4 w-4 md:h-6 md:w-6 text-white"
           fill="none"
           viewBox="0 0 24 24"
           stroke="currentColor"
@@ -98,16 +99,16 @@ const Slider = () => {
       </button>
 
       {/* Slider container */}
-      <div className="w-full max-w-3xl overflow-hidden relative">
+      <div className="w-full">
         <div
           ref={sliderRef}
-          className="flex transition-transform duration-500 ease-in-out"
+          className="flex w-full transition-transform duration-500 ease-in-out"
         >
           {slides.map((src, index) => (
             <img
               key={index}
               src={src}
-              className="w-full flex-shrink-0 rounded-lg"
+              className="w-full h-[200px] sm:h-[300px] md:h-[400px] lg:h-[500px] object-cover flex-shrink-0"
               alt={`Slide ${index + 1}`}
             />
           ))}
@@ -117,11 +118,11 @@ const Slider = () => {
       {/* Next button */}
       <button
         onClick={nextSlide}
-        className="p-1 md:p-2 bg-black/30 rounded-full hover:bg-black/50 md:ml-6 ml-2"
+        className="absolute right-2 md:right-4 top-1/2 -translate-y-1/2 z-10 p-1 md:p-2 bg-black/30 rounded-full hover:bg-black/50"
       >
         <svg
           xmlns="http://www.w3.org/2000/svg"
-          className="h-5 md:h-6 w-5 md:w-6 text-white"
+          className="h-4 w-4 md:h-6 md:w-6 text-white"
           fill="none"
           viewBox="0 0 24 24"
           stroke="currentColor"
@@ -130,6 +131,19 @@ const Slider = () => {
           <path strokeLinecap="round" strokeLinejoin="round" d="M9 5l7 7-7 7" />
         </svg>
       </button>
+
+      {/* Pagination Dots */}
+      <div className="absolute bottom-4 w-full flex justify-center gap-2">
+        {slides.map((_, index) => (
+          <button
+            key={index}
+            onClick={() => goToSlide(index)}
+            className={`w-2 h-2 md:w-3 md:h-3 rounded-full transition-all ${
+              currentSlide === index ? "bg-white scale-125" : "bg-gray-400"
+            }`}
+          />
+        ))}
+      </div>
     </div>
   );
 };

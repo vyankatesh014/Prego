@@ -69,10 +69,10 @@ import vanilla_muffins_image from "./vanilla_muffins_image.png";
 import quinoa_image from "./quinoa_image.png";
 import brown_rice_image from "./brown_rice_image.png";
 import barley_image from "./barley_image.png";
-import Slider_image1 from "./Slider1.png";
-import Slider_image2 from "./Slider2.png";
-import Slider_image3 from "./Slider3.png";
-import Slider_image4 from "./Slider4.png";
+import Slider_image1 from "./Slider1.jpg";
+import Slider_image2 from "./Slider2.jpg";
+import Slider_image3 from "./Slider3.jpg";
+import Slider_image4 from "./Slider4.jpg";
 import Slider_image5 from "./Slider5.jpg";
 
 
@@ -150,6 +150,30 @@ export const categories = [
   },
   {
     text: "Grains & Cereals",
+    path: "Grains",
+    image: grain_image,
+    bgColor: "#F1E3F9",
+  },
+  {
+    text: "Divya Vahini",
+    path: "Grains",
+    image: grain_image,
+    bgColor: "#F1E3F9",
+  },
+  {
+    text: "Akansha Vahini",
+    path: "Grains",
+    image: grain_image,
+    bgColor: "#F1E3F9",
+  },
+  {
+    text: "Mayuri Vahini",
+    path: "Grains",
+    image: grain_image,
+    bgColor: "#F1E3F9",
+  },
+  {
+    text: "Suhani Vahini",
     path: "Grains",
     image: grain_image,
     bgColor: "#F1E3F9",
