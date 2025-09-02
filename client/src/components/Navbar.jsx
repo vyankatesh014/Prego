@@ -96,7 +96,7 @@ const Navbar = () => {
 
           {/* Cart */}
           <div onClick={() => navigate("/cart")} className="relative cursor-pointer">
-            <img src={assets.nav_cart_icon} alt="cart" className="w-6 opacity-80" />
+            <img src={assets.nav_cart_icon} alt="cart" className="w-6 opacity-80 nav-cart-icon" />
             <button className="absolute -top-2 -right-3 text-xs text-white bg-primary w-[18px] h-[18px] rounded-full">
               {getCartCount()}
             </button>
@@ -226,7 +226,12 @@ const Navbar = () => {
           { name: "Instant Food", path: "/products/instant" },
           { name: "Dairy Products", path: "/products/dairy" },
           { name: "Bakery & Breads", path: "/products/bakery" },
-          { name: "Grains & Cereals", path: "/products/grains" },
+          { name: "Grains", path: "/products/grains" },
+          {name : "Snacks", path: "/products/snacks" },
+          { name: "Tea & Coffee", path: "/products/tea" },
+          { name: "Chocolates", path: "/products/chocolates" },
+          { name: "Spices", path: "/products/spices" },
+          { name: "Biscuits & Cookies", path: "/products/Biscuits" },
 
           
 

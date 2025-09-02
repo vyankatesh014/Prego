@@ -12,6 +12,8 @@ export const AppContext = createContext();
 export const AppContextProvider = ({children})=>{
 
     const currency = import.meta.env.VITE_CURRENCY;
+    const FREE_DELIVERY_THRESHOLD = 300;
+    const DELIVERY_FEE = 30;
 
     const navigate = useNavigate();
     const [user, setUser] = useState(null)
@@ -46,6 +48,7 @@ const fetchUser = async ()=>{
         }
     } catch (error) {
         setUser(null)
+        toast.error(error.message || "Failed to fetch user data")
     }
 }
 
@@ -108,8 +111,8 @@ const removeFromCart = (itemId)=>{
     return totalCount;
   }
 
-// Get Cart Total Amount
-const getCartAmount = () =>{
+// Get subtotal (without delivery fee)
+const getSubtotal = () => {
     let totalAmount = 0;
     for (const items in cartItems){
         let itemInfo = products.find((product)=> product._id === items);
@@ -118,6 +121,21 @@ const getCartAmount = () =>{
         }
     }
     return Math.floor(totalAmount * 100) / 100;
+}
+
+// Get delivery fee
+const getDeliveryFee = () => {
+    return getSubtotal() >= FREE_DELIVERY_THRESHOLD ? 0 : DELIVERY_FEE;
+}
+
+// Check if order qualifies for free delivery
+const hasFreeDelivery = () => {
+    return getSubtotal() >= FREE_DELIVERY_THRESHOLD;
+}
+
+// Get Cart Total Amount (including delivery fee)
+const getCartAmount = () => {
+    return getSubtotal() + getDeliveryFee();
 }
 
 
@@ -145,8 +163,14 @@ const getCartAmount = () =>{
         }
     },[cartItems])
 
-    const value = {navigate, user, setUser, setIsSeller, isSeller,
-        showUserLogin, setShowUserLogin, products, currency, addToCart, updateCartItem, removeFromCart, cartItems, searchQuery, setSearchQuery, getCartAmount, getCartCount, axios, fetchProducts, setCartItems
+    const value = {
+        navigate, user, setUser, setIsSeller, isSeller,
+        showUserLogin, setShowUserLogin, products, currency,
+        addToCart, updateCartItem, removeFromCart, cartItems,
+        searchQuery, setSearchQuery, getCartAmount, getCartCount,
+        axios, fetchProducts, setCartItems,
+        FREE_DELIVERY_THRESHOLD, DELIVERY_FEE, hasFreeDelivery,
+        getDeliveryFee, getSubtotal
     }
 
     return <AppContext.Provider value={value}>

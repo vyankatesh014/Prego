@@ -4,7 +4,7 @@ import { assets, dummyAddress } from "../assets/assets";
 import toast from "react-hot-toast";
 
 const Cart = () => {
-    const {products, currency, cartItems, removeFromCart, getCartCount, updateCartItem, navigate, getCartAmount, axios, user, setCartItems} = useAppContext()
+    const {products, currency, cartItems, removeFromCart, getCartCount, updateCartItem, navigate, getCartAmount, getSubtotal, getDeliveryFee, axios, user, setCartItems, hasFreeDelivery} = useAppContext()
     const [cartArray, setCartArray] = useState([])
     const [addresses, setAddresses] = useState([])
     const [showAddress, setShowAddress] = useState(false)
@@ -178,17 +178,22 @@ const Cart = () => {
 
                 <div className="text-gray-500 mt-4 space-y-2">
                     <p className="flex justify-between">
-                        <span>Price</span><span>{currency}{getCartAmount()}</span>
+                        <span>Subtotal</span><span>{currency}{getSubtotal()}</span>
                     </p>
                     <p className="flex justify-between">
-                        <span>Shipping Fee</span><span className="text-green-600">Free</span>
+                        <span>Shipping Fee</span>
+                        {hasFreeDelivery() ? (
+                            <span className="text-green-600">Free</span>
+                        ) : (
+                            <span className="text-gray-500">{currency}{getDeliveryFee()}</span>
+                        )}
                     </p>
                     <p className="flex justify-between">
-                        <span>Tax (2%)</span><span>{currency}{getCartAmount() * 2 / 100}</span>
+                        <span>Tax (2%)</span><span>{currency}{getSubtotal() * 2 / 100}</span>
                     </p>
                     <p className="flex justify-between text-lg font-medium mt-3">
                         <span>Total Amount:</span><span>
-                            {currency}{getCartAmount() + getCartAmount() * 2 / 100}</span>
+                            {currency}{getCartAmount() + getSubtotal() * 2 / 100}</span>
                     </p>
                 </div>
 

@@ -74,10 +74,20 @@ import Slider_image2 from "./Slider2.jpg";
 import Slider_image3 from "./Slider3.jpg";
 import Slider_image4 from "./Slider4.jpg";
 import Slider_image5 from "./Slider5.jpg";
+import Chocolate  from "./Chocolate.png";
+import Tea from "./Tea.png";
+import Snacks from "./Snacks.png";
+import Spices from "./Spices.png";
+import Biscuit from "./Biscuit.png";
 
 
 export const assets = {
   logo,
+  Chocolate,
+  Tea,
+  Snacks,
+  Spices,
+  Biscuit,
   Slider_image1,
   Slider_image2,
   Slider_image3,
@@ -149,34 +159,40 @@ export const categories = [
     bgColor: "#E0F6FE",
   },
   {
-    text: "Grains & Cereals",
+    text: "Grains",
     path: "Grains",
     image: grain_image,
     bgColor: "#F1E3F9",
   },
   {
-    text: "Divya Vahini",
-    path: "Grains",
-    image: grain_image,
+    text: "Snacks",
+    path: "Snacks",
+    image: Snacks,
     bgColor: "#F1E3F9",
   },
   {
-    text: "Akansha Vahini",
-    path: "Grains",
-    image: grain_image,
-    bgColor: "#F1E3F9",
+    text: "Tea & Coffee",
+    path: "Tea",
+    image: Tea,
+    bgColor: "#FEE6CD",
   },
   {
-    text: "Mayuri Vahini",
-    path: "Grains",
-    image: grain_image,
-    bgColor: "#F1E3F9",
+    text: "Chocolates",
+    path: "Chocolates",
+    image: Chocolate,
+    bgColor: "#E1F5EC",
   },
   {
-    text: "Suhani Vahini",
-    path: "Grains",
-    image: grain_image,
-    bgColor: "#F1E3F9",
+    text: "Spices",
+    path: "Spices",
+    image: Spices,
+    bgColor: "#F0F5DE",
+  },
+   {
+    text: "Biscuits & Cookies",
+    path: "Biscuits",
+    image: Biscuit,
+    bgColor: "#FEF6DA",
   },
 ];
 

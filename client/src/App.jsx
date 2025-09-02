@@ -4,7 +4,7 @@ import { Route, Routes, useLocation } from 'react-router-dom'
 import Home from './pages/Home'
 import { Toaster } from "react-hot-toast";
 
-import Slider from './components/Slider.JSX';
+import Slider from './components/Slider.JSX';   // 👈 keep filename consistent
 import Footer from './components/Footer';
 import { useAppContext } from './context/AppContext';
 import Login from './components/Login';
@@ -20,6 +20,7 @@ import AddProduct from './pages/seller/AddProduct';
 import ProductList from './pages/seller/ProductList';
 import Orders from './pages/seller/Orders';
 import Loading from './components/Loading';
+import CartWidget from './components/CartWidget';
 
 const App = () => {
   const location = useLocation();   // 👈 use location
@@ -49,9 +50,9 @@ const App = () => {
           <Route path='/loader' element={<Loading />} />
 
           {/* Seller routes */}
-          <Route path='/sellerLogin' element={isSeller ? <SellerLayout /> : <SellerLogin />}>
+          <Route path='/seller' element={isSeller ? <SellerLayout /> : <SellerLogin />}>
             <Route index element={isSeller ? <AddProduct /> : null} />
-            <Route path='/product-list' element={<ProductList />} />
+            <Route path='product-list' element={<ProductList />} />
             <Route path='orders' element={<Orders />} />
           </Route>
         </Routes>
@@ -59,6 +60,9 @@ const App = () => {
 
       {/* Footer only for non-seller paths */}
       {!isSellerPath && <Footer />}
+      
+      {/* Cart Widget */}
+      {!isSellerPath && <CartWidget />}
     </div>
   );
 };
