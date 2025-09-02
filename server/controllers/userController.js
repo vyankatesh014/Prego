@@ -1,5 +1,5 @@
 import User from "../models/User.js";
-import bcrypt from 'bcryptjs';
+import bcrypt from 'bcryptj        return res.json({success: true, user: {email: user.email, name: user.name, address: user.address})';
 import jwt from 'jsonwebtoken';
 
 // Register User : /api/user/register
@@ -64,7 +64,7 @@ export const login = async (req, res)=>{
             maxAge: 7 * 24 * 60 * 60 * 1000,
         })
 
-        return res.json({success: true, user: {email: user.email, name: user.name, address: user.address}})
+        return res.json({success: true, user: {email: user.email, name: user.name}})
     } catch (error) {
         console.log(error.message);
         res.json({ success: false, message: error.message });

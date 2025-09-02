@@ -1,34 +1,8 @@
-import React, { useState, useEffect, useCallback, useRef } from 'react';
+import React, { useState, useEffect } from 'react';
 import { Link, useLocation } from 'react-router-dom';
 import { useAppContext } from '../context/AppContext';
 import { assets } from '../assets/assets';
 import { motion, AnimatePresence } from 'framer-motion';
-import ReactCanvasConfetti from 'react-canvas-confetti';
-
-const canvasStyles = {
-  position: 'fixed',
-  pointerEvents: 'none',
-  width: '100%',
-  height: '100%',
-  top: 0,
-  left: 0,
-  zIndex: 999
-};
-
-function getAnimationSettings(angle, originX) {
-  return {
-    particleCount: 30,
-    angle,
-    spread: 70,
-    startVelocity: 45,
-    decay: 0.9,
-    gravity: 1,
-    drift: 0,
-    ticks: 200,
-    origin: { x: originX },
-    colors: ['#FF5733', '#33FF57', '#3357FF', '#F7D794', '#7D5FFF', '#FFC107', '#FF4081']
-  };
-}
 
 const CartWidget = () => {
   const { cartItems, getCartAmount, getCartCount, currency, products, addToCart, removeFromCart, setCartItems, FREE_DELIVERY_THRESHOLD, hasFreeDelivery, user, setShowUserLogin, getSubtotal, getDeliveryFee } = useAppContext();
@@ -39,36 +13,6 @@ const CartWidget = () => {
   const total = getCartAmount();
   const amountForFreeDelivery = Math.max(0, FREE_DELIVERY_THRESHOLD - subtotal);
   const progressPercentage = (subtotal / FREE_DELIVERY_THRESHOLD) * 100;
-  const prevSubtotalRef = useRef(subtotal);
-
-  const refAnimationInstance = useRef(null);
-
-  const getInstance = useCallback((instance) => {
-    refAnimationInstance.current = instance;
-  }, []);
-
-  const nextTickAnimation = useCallback(() => {
-    if (refAnimationInstance.current) {
-      refAnimationInstance.current(getAnimationSettings(60, 0));
-      refAnimationInstance.current(getAnimationSettings(120, 1));
-    }
-  }, []);
-
-  const startAnimation = useCallback(() => {
-    if (!refAnimationInstance.current) return;
-    nextTickAnimation(); // Initial burst
-    const interval = setInterval(() => {
-      nextTickAnimation();
-    }, 300); // More frequent bursts
-    setTimeout(() => clearInterval(interval), 1500); // Shorter duration but more intense
-  }, [nextTickAnimation]);
-
-  useEffect(() => {
-    if (prevSubtotalRef.current < FREE_DELIVERY_THRESHOLD && subtotal >= FREE_DELIVERY_THRESHOLD) {
-      startAnimation();
-    }
-    prevSubtotalRef.current = subtotal;
-  }, [subtotal, FREE_DELIVERY_THRESHOLD, startAnimation]);
 
   // Load cart from localStorage on mount
   useEffect(() => {
@@ -88,7 +32,6 @@ const CartWidget = () => {
 
   return (
     <>
-      <ReactCanvasConfetti refConfetti={getInstance} style={canvasStyles} />
       {/* Main Cart Widget */}
       <div className="fixed bottom-8 left-1/2 -translate-x-1/2 z-50 px-4 w-full max-w-2xl mx-auto">
         <div 
@@ -102,14 +45,9 @@ const CartWidget = () => {
                 Add {currency}{amountForFreeDelivery} more for Free Delivery
               </div>
             ) : (
-              <motion.div 
-                initial={{ scale: 0.5, opacity: 0 }}
-                animate={{ scale: 1, opacity: 1 }}
-                transition={{ type: "spring", duration: 0.5 }}
-                className="text-xs text-primary text-center font-medium"
-              >
-                🎉 Yay! You've got Free Delivery 🎉
-              </motion.div>
+              <div className="text-xs text-primary text-center font-medium">
+                🎉 Yay! You've got Free Delivery
+              </div>
             )}
             <div className="w-full h-1.5 bg-gray-100 rounded-full mt-1">
               <div 
