@@ -4,7 +4,7 @@ import { assets, dummyAddress } from "../assets/assets";
 import toast from "react-hot-toast";
 
 const Cart = () => {
-    const {products, currency, cartItems, removeFromCart, getCartCount, updateCartItem, navigate, getCartAmount, getSubtotal, getDeliveryFee, axios, user, setCartItems, hasFreeDelivery} = useAppContext()
+    const {products, currency, cartItems, removeFromCart, getCartCount, updateCartItem, navigate, getCartAmount, getSubtotal, getDeliveryFee, axios, user, setCartItems, hasFreeDelivery, setShowUserLogin} = useAppContext()
     const [cartArray, setCartArray] = useState([])
     const [addresses, setAddresses] = useState([])
     const [showAddress, setShowAddress] = useState(false)
@@ -87,6 +87,9 @@ const Cart = () => {
 
     useEffect(()=>{
         if(user){
+            if (user.address) {
+                setSelectedAddress({ street: user.address });
+            }
             getUserAddress()
         }
     },[user])
@@ -148,7 +151,21 @@ const Cart = () => {
                 <div className="mb-6">
                     <p className="text-sm font-medium uppercase">Delivery Address</p>
                     <div className="relative flex justify-between items-start mt-2">
-                        <p className="text-gray-500">{selectedAddress ? `${selectedAddress.street}, ${selectedAddress.city}, ${selectedAddress.state}, ${selectedAddress.country}` : "No address found"}</p>
+                        {(() => {
+                            let addressText = "No address found";
+                            if (selectedAddress) {
+                                if (selectedAddress.street && !selectedAddress.city) {
+                                    addressText = selectedAddress.street;
+                                } else {
+                                    addressText = `${selectedAddress.street}, ${selectedAddress.city}, ${selectedAddress.state}, ${selectedAddress.country}`;
+                                }
+                            }
+                            return (
+                                <p className="text-gray-500">
+                                    {addressText}
+                                </p>
+                            );
+                        })()}
                         <button onClick={() => setShowAddress(!showAddress)} className="text-primary hover:underline cursor-pointer">
                             Change
                         </button>
@@ -197,9 +214,21 @@ const Cart = () => {
                     </p>
                 </div>
 
-                <button onClick={placeOrder} className="w-full py-3 mt-6 cursor-pointer bg-primary text-white font-medium hover:bg-primary-dull transition">
-                    {paymentOption === "COD" ? "Place Order" : "Proceed to Checkout"}
-                </button>
+                {user ? (
+                    <button 
+                        onClick={placeOrder} 
+                        className="w-full py-3 mt-6 cursor-pointer bg-primary text-white font-medium hover:bg-primary-dull transition"
+                    >
+                        {paymentOption === "COD" ? "Place Order" : "Proceed to Checkout"}
+                    </button>
+                ) : (
+                    <button 
+                        onClick={() => setShowUserLogin(true)}
+                        className="w-full py-3 mt-6 cursor-pointer bg-primary text-white font-medium hover:bg-primary-dull transition"
+                    >
+                        Proceed to Login
+                    </button>
+                )}
             </div>
         </div>
     ) : null

@@ -12,7 +12,7 @@ export const AppContext = createContext();
 export const AppContextProvider = ({children})=>{
 
     const currency = import.meta.env.VITE_CURRENCY;
-    const FREE_DELIVERY_THRESHOLD = 300;
+    const FREE_DELIVERY_THRESHOLD = 99;
     const DELIVERY_FEE = 30;
 
     const navigate = useNavigate();
@@ -34,7 +34,9 @@ export const AppContextProvider = ({children})=>{
             setIsSeller(false)
         }
     } catch (error) {
-        setIsSeller(false)
+        setIsSeller(false);
+        console.error("Error fetching seller status:", error);
+        toast.error(error.message || "Failed to fetch seller status");
     }
   }
 

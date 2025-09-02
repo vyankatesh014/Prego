@@ -10,13 +10,14 @@ const Login = () => {
     const [name, setName] = React.useState("");
     const [email, setEmail] = React.useState("");
     const [password, setPassword] = React.useState("");
+    const [address, setAddress] = React.useState("");
 
     const onSubmitHandler = async (event)=>{
         try {
             event.preventDefault();
 
             const {data} = await axios.post(`/api/user/${state}`,{
-                name, email, password
+                name, email, password, address
             });
             if (data.success){
                 navigate('/')
@@ -42,10 +43,23 @@ const Login = () => {
                 <span className="text-primary">User</span> {state === "login" ? "Login" : "Sign Up"}
             </p>
             {state === "register" && (
-                <div className="w-full">
-                    <p>Name</p>
-                    <input onChange={(e) => setName(e.target.value)} value={name} placeholder="type here" className="border border-gray-200 rounded w-full p-2 mt-1 outline-primary" type="text" required />
-                </div>
+                <>
+                    <div className="w-full">
+                        <p>Name</p>
+                        <input onChange={(e) => setName(e.target.value)} value={name} placeholder="type here" className="border border-gray-200 rounded w-full p-2 mt-1 outline-primary" type="text" required />
+                    </div>
+                    <div className="w-full">
+                        <p>Delivery Address</p>
+                        <input 
+                            onChange={(e) => setAddress(e.target.value)} 
+                            value={address} 
+                            placeholder="Enter your full address" 
+                            className="border border-gray-200 rounded w-full p-2 mt-1 outline-primary" 
+                            type="text" 
+                            required 
+                        />
+                    </div>
+                </>
             )}
             <div className="w-full ">
                 <p>Email</p>
