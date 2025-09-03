@@ -1,5 +1,5 @@
 import User from "../models/User.js";
-import bcrypt from 'bcryptj        return res.json({success: true, user: {email: user.email, name: user.name, address: user.address})';
+import bcrypt from 'bcryptjs';
 import jwt from 'jsonwebtoken';
 
 // Register User : /api/user/register
