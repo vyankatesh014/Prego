@@ -79,9 +79,11 @@ import Tea from "./Tea.png";
 import Snacks from "./Snacks.png";
 import Spices from "./Spices.png";
 import Biscuit from "./Biscuit.png";
+import Favicon1 from "./Favicon.png";
 
 
 export const assets = {
+  Favicon1,
   logo,
   Chocolate,
   Tea,

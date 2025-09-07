@@ -27,8 +27,8 @@ const CartWidget = () => {
     localStorage.setItem('cart', JSON.stringify(cartItems));
   }, [cartItems]);
 
-  // Hide widget if cart is empty or if we're on the cart page
-  if (itemCount === 0 || location.pathname === '/cart') return null;
+  // Hide widget if cart is empty or if we're on the cart or add-address page
+  if (itemCount === 0 || location.pathname === '/cart' || location.pathname === '/add-address') return null;
 
   return (
     <>
