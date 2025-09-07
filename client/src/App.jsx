@@ -8,19 +8,22 @@ import Slider from './components/Slider.JSX';   // 👈 keep filename consistent
 import Footer from './components/Footer';
 import { useAppContext } from './context/AppContext';
 import Login from './components/Login';
+
+
 import AllProducts from './pages/AllProducts';
 import ProductCategory from './pages/ProductCategory';
 import ProductDetails from './pages/ProductDetails';
 import Cart from './pages/Cart';
 import AddAddress from './pages/AddAddress';
 import MyOrders from './pages/MyOrders';
-import SellerLogin from './components/seller/SellerLogin';
+import Loading from './components/Loading';
 import SellerLayout from './pages/seller/SellerLayout';
+import SellerLogin from './components/seller/SellerLogin';
 import AddProduct from './pages/seller/AddProduct';
 import ProductList from './pages/seller/ProductList';
 import Orders from './pages/seller/Orders';
-import Loading from './components/Loading';
 import CartWidget from './components/CartWidget';
+import HealthPicks from './pages/HealthPicks';
 
 const App = () => {
   const location = useLocation();   // 👈 use location
@@ -47,6 +50,8 @@ const App = () => {
           <Route path='/cart' element={<Cart />} />
           <Route path='/add-address' element={<AddAddress />} />
           <Route path='/my-orders' element={<MyOrders />} />
+
+          <Route path='/health-picks' element={<HealthPicks />} />
           <Route path='/loader' element={<Loading />} />
 
           {/* Seller routes */}

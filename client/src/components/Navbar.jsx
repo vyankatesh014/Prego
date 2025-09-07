@@ -48,19 +48,25 @@ const Navbar = () => {
           <img className="h-9" src={assets.logo} alt="logo" />
         </NavLink>
         {/* Desktop Links */}
-        <div className="hidden sm:flex items-center gap-6">
+  <div className="hidden sm:flex items-center gap-6">
           {location.pathname !== "/" && (
             <NavLink
               to="/"
               className={({ isActive }) =>
-                `transition px-2 py-1 rounded ${isActive ? "text-primary font-semibold" : "text-gray-600 hover:text-primary"
-                }`
+                `transition px-2 py-1 rounded ${isActive ? "text-primary font-semibold" : "text-gray-600 hover:text-primary"}`
               }
             >
               Home
             </NavLink>
           )}
-
+          <NavLink
+            to="/health-picks"
+            className={({ isActive }) =>
+              `transition px-2 py-1 rounded ${isActive ? "text-green-700 font-bold" : "text-gray-600 hover:text-green-700"}`
+            }
+          >
+            Health Picks
+          </NavLink>
           <NavLink
             to="/products"
             className={({ isActive }) =>
@@ -136,6 +142,15 @@ const Navbar = () => {
         {/* Mobile Dropdown */}
         {open && (
           <div className="absolute top-[60px] left-0 w-full bg-white shadow-md py-4 flex flex-col items-start gap-2 px-5 text-sm md:hidden">
+            <NavLink
+              to="/health-picks"
+              onClick={() => setOpen(false)}
+              className={({ isActive }) =>
+                `transition px-2 py-1 rounded ${isActive ? "text-green-700 font-bold" : "text-gray-600 hover:text-green-700"}`
+              }
+            >
+              Health Picks
+            </NavLink>
             {location.pathname !== "/" && (
               <NavLink
                 to="/"
@@ -192,39 +207,38 @@ const Navbar = () => {
         )}
       </div>
 
-      {/* Bottom Navbar (Categories) */}
-      <nav className="bg-gray-100 px-6 md:px-20 lg:px-32 xl:px-40 py-3 flex items-center gap-6 text-sm font-medium border-b border-gray-200 overflow-x-auto">
-        {[
-          { name: "Organic Veggies", path: "/products/vegetables" },
-          { name: "Fresh Fruits", path: "/products/fruits" },
-          { name: "Cold Drinks", path: "/products/drinks" },
-          { name: "Instant Food", path: "/products/instant" },
-          { name: "Dairy Products", path: "/products/dairy" },
-          { name: "Bakery & Breads", path: "/products/bakery" },
-          { name: "Grains", path: "/products/grains" },
-          {name : "Snacks", path: "/products/snacks" },
-          { name: "Tea & Coffee", path: "/products/tea" },
-          { name: "Chocolates", path: "/products/chocolates" },
-          { name: "Spices", path: "/products/spices" },
-          { name: "Biscuits & Cookies", path: "/products/Biscuits" },
-
-          
-
-        ].map((item) => (
-          <NavLink
-            key={item.path}
-            to={item.path}
-            className={({ isActive }) =>
-              `whitespace-nowrap transition ${isActive
-                ? "text-primary border-b-2 border-primary"
-                : "text-gray-600 hover:text-primary"
-              }`
-            }
-          >
-            {item.name}
-          </NavLink>
-        ))}
-      </nav>
+      {/* Bottom Navbar (Categories) - Hide on Health Picks page */}
+      {location.pathname !== "/health-picks" && (
+        <nav className="bg-gray-100 px-6 md:px-20 lg:px-32 xl:px-40 py-3 flex items-center gap-6 text-sm font-medium border-b border-gray-200 overflow-x-auto">
+          {[
+            { name: "Organic Veggies", path: "/products/vegetables" },
+            { name: "Fresh Fruits", path: "/products/fruits" },
+            { name: "Cold Drinks", path: "/products/drinks" },
+            { name: "Instant Food", path: "/products/instant" },
+            { name: "Dairy Products", path: "/products/dairy" },
+            { name: "Bakery & Breads", path: "/products/bakery" },
+            { name: "Grains", path: "/products/grains" },
+            {name : "Snacks", path: "/products/snacks" },
+            { name: "Tea & Coffee", path: "/products/tea" },
+            { name: "Chocolates", path: "/products/chocolates" },
+            { name: "Spices", path: "/products/spices" },
+            { name: "Biscuits & Cookies", path: "/products/Biscuits" },
+          ].map((item) => (
+            <NavLink
+              key={item.path}
+              to={item.path}
+              className={({ isActive }) =>
+                `whitespace-nowrap transition ${isActive
+                  ? "text-primary border-b-2 border-primary"
+                  : "text-gray-600 hover:text-primary"
+                }`
+              }
+            >
+              {item.name}
+            </NavLink>
+          ))}
+        </nav>
+      )}
     </header>
   );
 };
