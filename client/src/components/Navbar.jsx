@@ -48,7 +48,7 @@ const Navbar = () => {
           <img className="h-9" src={assets.logo} alt="logo" />
         </NavLink>
         {/* Desktop Links */}
-  <div className="hidden sm:flex items-center gap-6">
+        <div className="hidden sm:flex items-center gap-6">
           {location.pathname !== "/" && (
             <NavLink
               to="/"
@@ -71,22 +71,7 @@ const Navbar = () => {
             All Products
           </NavLink>
 
-          {/* Health Picks Dropdown */}
-          <div className="relative group">
-            <NavLink
-              to="/healthPicks"
-              className={`transition px-2 py-1 rounded ${location.pathname.startsWith('/health-picks') || location.pathname.startsWith('/healthPicks') ? 'text-primary font-semibold' : 'text-gray-600 hover:text-primary'}`}
-              style={{ display: 'inline-block' }}
-            >
-              Health Picks
-            </NavLink>
-            <div className="absolute left-0 mt-2 w-48 bg-white shadow-lg rounded z-40 hidden group-hover:block">
-              <NavLink to="/health-picks/healthy-food" className={({ isActive }) => `block px-4 py-2 hover:bg-primary/10 ${isActive ? 'text-primary font-semibold' : 'text-gray-700'}`}>Healthy Food</NavLink>
-              <NavLink to="/health-picks/high-protein" className={({ isActive }) => `block px-4 py-2 hover:bg-primary/10 ${isActive ? 'text-primary font-semibold' : 'text-gray-700'}`}>High Protein</NavLink>
-              <NavLink to="/health-picks/weight-loss" className={({ isActive }) => `block px-4 py-2 hover:bg-primary/10 ${isActive ? 'text-primary font-semibold' : 'text-gray-700'}`}>Weight Loss</NavLink>
-              <NavLink to="/health-picks/immunity-boost" className={({ isActive }) => `block px-4 py-2 hover:bg-primary/10 ${isActive ? 'text-primary font-semibold' : 'text-gray-700'}`}>Immunity Boost</NavLink>
-            </div>
-          </div>
+          {/* Search */}
           <div className="hidden lg:flex items-center text-sm gap-2 border border-gray-300 px-3 rounded-full">
             <input
               onChange={(e) => setSearchQuery(e.target.value)}
@@ -207,38 +192,39 @@ const Navbar = () => {
         )}
       </div>
 
-      {/* Bottom Navbar (Categories) - hidden on Health Picks routes */}
-      { !location.pathname.startsWith('/health-picks') && !location.pathname.startsWith('/healthPicks') && (
-        <nav className="bg-gray-100 px-6 md:px-20 lg:px-32 xl:px-40 py-3 flex items-center gap-6 text-sm font-medium border-b border-gray-200 overflow-x-auto">
-          {[
-            { name: "Organic Veggies", path: "/products/vegetables" },
-            { name: "Fresh Fruits", path: "/products/fruits" },
-            { name: "Cold Drinks", path: "/products/drinks" },
-            { name: "Instant Food", path: "/products/instant" },
-            { name: "Dairy Products", path: "/products/dairy" },
-            { name: "Bakery & Breads", path: "/products/bakery" },
-            { name: "Grains", path: "/products/grains" },
-            {name : "Snacks", path: "/products/snacks" },
-            { name: "Tea & Coffee", path: "/products/tea" },
-            { name: "Chocolates", path: "/products/chocolates" },
-            { name: "Spices", path: "/products/spices" },
-            { name: "Biscuits & Cookies", path: "/products/Biscuits" },
-          ].map((item) => (
-            <NavLink
-              key={item.path}
-              to={item.path}
-              className={({ isActive }) =>
-                `whitespace-nowrap transition ${isActive
-                  ? "text-primary border-b-2 border-primary"
-                  : "text-gray-600 hover:text-primary"
-                }`
-              }
-            >
-              {item.name}
-            </NavLink>
-          ))}
-        </nav>
-      )}
+      {/* Bottom Navbar (Categories) */}
+      <nav className="bg-gray-100 px-6 md:px-20 lg:px-32 xl:px-40 py-3 flex items-center gap-6 text-sm font-medium border-b border-gray-200 overflow-x-auto">
+        {[
+          { name: "Organic Veggies", path: "/products/vegetables" },
+          { name: "Fresh Fruits", path: "/products/fruits" },
+          { name: "Cold Drinks", path: "/products/drinks" },
+          { name: "Instant Food", path: "/products/instant" },
+          { name: "Dairy Products", path: "/products/dairy" },
+          { name: "Bakery & Breads", path: "/products/bakery" },
+          { name: "Grains", path: "/products/grains" },
+          {name : "Snacks", path: "/products/snacks" },
+          { name: "Tea & Coffee", path: "/products/tea" },
+          { name: "Chocolates", path: "/products/chocolates" },
+          { name: "Spices", path: "/products/spices" },
+          { name: "Biscuits & Cookies", path: "/products/Biscuits" },
+
+          
+
+        ].map((item) => (
+          <NavLink
+            key={item.path}
+            to={item.path}
+            className={({ isActive }) =>
+              `whitespace-nowrap transition ${isActive
+                ? "text-primary border-b-2 border-primary"
+                : "text-gray-600 hover:text-primary"
+              }`
+            }
+          >
+            {item.name}
+          </NavLink>
+        ))}
+      </nav>
     </header>
   );
 };
