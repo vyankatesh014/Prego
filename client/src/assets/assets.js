@@ -125,30 +125,6 @@ export const assets = {
 
 export const categories = [
   {
-    text: "Healthy Food",
-    path: "Healthy Food",
-    image: organic_vegitable_image,
-    bgColor: "#E8F5E9",
-  },
-  {
-    text: "High Protein",
-    path: "High Protein",
-    image: dairy_product_image,
-    bgColor: "#EDE7F6",
-  },
-  {
-    text: "Weight Loss",
-    path: "Weight Loss",
-    image: fresh_fruits_image,
-    bgColor: "#E1F5FE",
-  },
-  {
-    text: "Immunity Boost",
-    path: "Immunity Boost",
-    image: bakery_image,
-    bgColor: "#FFF3E0",
-  },
-  {
     text: "Organic veggies",
     path: "Vegetables",
     image: organic_vegitable_image,

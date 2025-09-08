@@ -3,27 +3,25 @@ import Navbar from './components/Navbar'
 import { Route, Routes, useLocation } from 'react-router-dom'
 import Home from './pages/home'
 import { Toaster } from "react-hot-toast";
+import HealthPicks from './pages/HealthPicks';
 
 import Slider from './components/Slider.JSX';   // 👈 keep filename consistent
 import Footer from './components/Footer';
 import { useAppContext } from './context/AppContext';
 import Login from './components/Login';
-
-
 import AllProducts from './pages/AllProducts';
 import ProductCategory from './pages/ProductCategory';
 import ProductDetails from './pages/ProductDetails';
 import Cart from './pages/Cart';
 import AddAddress from './pages/AddAddress';
 import MyOrders from './pages/MyOrders';
-import Loading from './components/Loading';
-import SellerLayout from './pages/seller/SellerLayout';
 import SellerLogin from './components/seller/SellerLogin';
+import SellerLayout from './pages/seller/SellerLayout';
 import AddProduct from './pages/seller/AddProduct';
 import ProductList from './pages/seller/ProductList';
 import Orders from './pages/seller/Orders';
+import Loading from './components/Loading';
 import CartWidget from './components/CartWidget';
-import HealthPicks from './pages/HealthPicks';
 
 const App = () => {
   const location = useLocation();   // 👈 use location
@@ -44,14 +42,13 @@ const App = () => {
       <div className={`${isSellerPath ? "" : "px-6 md:px-16 lg:px-24 xl:px-32"}`}>
         <Routes>
           <Route path='/' element={<Home />} />
+          <Route path='/health-picks' element={<HealthPicks />} />
           <Route path='/products' element={<AllProducts />} />
           <Route path='/products/:category' element={<ProductCategory />} />
           <Route path='/products/:category/:id' element={<ProductDetails />} />
           <Route path='/cart' element={<Cart />} />
           <Route path='/add-address' element={<AddAddress />} />
           <Route path='/my-orders' element={<MyOrders />} />
-
-          <Route path='/health-picks' element={<HealthPicks />} />
           <Route path='/loader' element={<Loading />} />
 
           {/* Seller routes */}

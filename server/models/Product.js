@@ -7,7 +7,6 @@ const productSchema = new mongoose.Schema({
     offerPrice: {type: Number, required: true },
     image: {type: Array, required: true },
     category: {type: String, required: true },
-    healthCategory: {type: String, enum: ['Healthy Food', 'High Protein', 'Weight Loss', 'Immunity Boost']},
     inStock: {type: Boolean, default: true },
 }, { timestamps: true})
 

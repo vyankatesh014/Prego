@@ -28,15 +28,7 @@ export const addProduct = async (req, res)=>{
 // Get Product : /api/product/list
 export const productList = async (req, res)=>{
     try {
-        const { healthCategory } = req.query;
-        let query = {};
-        
-        // If health category is specified, add it to the query
-        if (healthCategory) {
-            query.healthCategory = healthCategory;
-        }
-        
-        const products = await Product.find(query)
+        const products = await Product.find({})
         res.json({success: true, products})
     } catch (error) {
         console.log(error.message);
