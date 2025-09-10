@@ -5,13 +5,44 @@ const Slider = () => {
   const sliderRef = useRef(null);
   const [currentSlide, setCurrentSlide] = useState(0);
 
-  // Array of image URLs
+
+  // Array of slide objects with image, headline, subheadline, CTA text, and link
   const slides = [
-    assets.Slider_image1,
-    assets.Slider_image2,
-    assets.Slider_image3,
-    assets.Slider_image4,
-    assets.Slider_image5,
+    {
+      image: assets.Slider_image1,
+      headline: "Fresh Fruits & Veggies Delivered",
+      subheadline: "Get the best produce at your doorstep, always fresh.",
+      cta: "Shop Fruits & Veggies",
+      link: "/products/fruits"
+    },
+    {
+      image: assets.Slider_image2,
+      headline: "Dairy & Breakfast Essentials",
+      subheadline: "Start your day right with our quality dairy selection.",
+      cta: "Browse Dairy",
+      link: "/products/dairy"
+    },
+    {
+      image: assets.Slider_image3,
+      headline: "Snacks & Beverages",
+      subheadline: "Treat yourself to delicious snacks and refreshing drinks.",
+      cta: "See Snacks & Drinks",
+      link: "/products/snacks"
+    },
+    {
+      image: assets.Slider_image4,
+      headline: "Bakery & Breads",
+      subheadline: "Enjoy fresh breads and bakery delights every day.",
+      cta: "Order Bakery",
+      link: "/products/bakery"
+    },
+    {
+      image: assets.Slider_image5,
+      headline: "Organic & Healthy Picks",
+      subheadline: "Choose from a curated range of organic and healthy foods.",
+      cta: "Explore Health Picks",
+      link: "/health-picks"
+    },
   ];
 
   const totalSlides = slides.length;
@@ -81,10 +112,47 @@ const Slider = () => {
 
   return (
     <div className="relative w-full overflow-hidden">
+      {/* Slider container with overlay */}
+      <div className="w-full relative">
+        <div
+          ref={sliderRef}
+          className="flex w-full transition-transform duration-500 ease-in-out"
+        >
+          {slides.map((slide, index) => (
+            <img
+              key={index}
+              src={slide.image}
+              className={`w-full h-[220px] sm:h-[340px] md:h-[440px] lg:h-[540px] object-cover flex-shrink-0 transition-transform duration-700 ${
+                currentSlide === index ? 'scale-105' : 'scale-100 opacity-80'
+              }`}
+              alt={slide.headline}
+            />
+          ))}
+        </div>
+        {/* Gradient overlay for text readability */}
+        <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-black/20 to-transparent z-10 pointer-events-none" />
+        {/* Headline, subheadline, CTA for current slide */}
+        <div className="absolute inset-0 flex flex-col items-center justify-center text-center z-20 px-4">
+          <h1 className="text-2xl sm:text-4xl md:text-5xl font-extrabold text-white drop-shadow-lg mb-4 animate-fadeInUp">
+            {slides[currentSlide].headline}
+          </h1>
+          <p className="text-base sm:text-lg md:text-2xl text-white/90 font-medium mb-6 animate-fadeInUp delay-100">
+            {slides[currentSlide].subheadline}
+          </p>
+          <a
+            href={slides[currentSlide].link}
+            className="inline-block bg-primary hover:bg-primary-dark text-white font-semibold px-8 py-3 rounded-full shadow-lg transition-all duration-300 animate-fadeInUp delay-200"
+          >
+            {slides[currentSlide].cta}
+          </a>
+        </div>
+      </div>
+
       {/* Previous button */}
       <button
         onClick={prevSlide}
-        className="absolute left-2 md:left-4 top-1/2 -translate-y-1/2 z-10 p-1 md:p-2 bg-black/30 rounded-full hover:bg-black/50"
+        className="absolute left-2 md:left-4 top-1/2 -translate-y-1/2 z-30 p-1 md:p-2 bg-black/30 rounded-full hover:bg-black/50"
+        aria-label="Previous Slide"
       >
         <svg
           xmlns="http://www.w3.org/2000/svg"
@@ -98,27 +166,11 @@ const Slider = () => {
         </svg>
       </button>
 
-      {/* Slider container */}
-      <div className="w-full">
-        <div
-          ref={sliderRef}
-          className="flex w-full transition-transform duration-500 ease-in-out"
-        >
-          {slides.map((src, index) => (
-            <img
-              key={index}
-              src={src}
-              className="w-full h-[200px] sm:h-[300px] md:h-[400px] lg:h-[500px] object-cover flex-shrink-0"
-              alt={`Slide ${index + 1}`}
-            />
-          ))}
-        </div>
-      </div>
-
       {/* Next button */}
       <button
         onClick={nextSlide}
-        className="absolute right-2 md:right-4 top-1/2 -translate-y-1/2 z-10 p-1 md:p-2 bg-black/30 rounded-full hover:bg-black/50"
+        className="absolute right-2 md:right-4 top-1/2 -translate-y-1/2 z-30 p-1 md:p-2 bg-black/30 rounded-full hover:bg-black/50"
+        aria-label="Next Slide"
       >
         <svg
           xmlns="http://www.w3.org/2000/svg"
@@ -133,7 +185,7 @@ const Slider = () => {
       </button>
 
       {/* Pagination Dots */}
-      <div className="absolute bottom-4 w-full flex justify-center gap-2">
+      <div className="absolute bottom-4 w-full flex justify-center gap-2 z-30">
         {slides.map((_, index) => (
           <button
             key={index}
@@ -141,6 +193,7 @@ const Slider = () => {
             className={`w-2 h-2 md:w-3 md:h-3 rounded-full transition-all ${
               currentSlide === index ? "bg-white scale-125" : "bg-gray-400"
             }`}
+            aria-label={`Go to slide ${index + 1}`}
           />
         ))}
       </div>

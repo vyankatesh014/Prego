@@ -85,13 +85,40 @@ const AddProduct = () => {
                 </div>
                 <div className="w-full flex flex-col gap-1">
                     <label className="text-base font-medium" htmlFor="category">Category</label>
-                    <select onChange={(e)=> setCategory(e.target.value)} value={category} 
-                    id="category" className="outline-none md:py-2.5 py-2 px-3 rounded border border-gray-500/40">
-                        <option value="">Select Category</option>
-                        {categories.map((item, index)=>(
-                            <option key={index} value={item.path}>{item.path}</option>
-                        ))}
-                    </select>
+                    {(() => {
+                        // Health Picks categories
+                        const healthPicksCategories = [
+                            { text: "Healthy Food", path: "healthy-food" },
+                            { text: "High Protein", path: "high-protein" },
+                            { text: "Weight Loss", path: "weight-loss" },
+                            { text: "Immunity Boost", path: "immunity" },
+                        ];
+                        // Default categories: filter out health picks from categories array
+                        const defaultCategories = categories.filter(
+                            (cat) => !healthPicksCategories.some(hp => hp.path === cat.path)
+                        );
+                        return (
+                            <select
+                                onChange={(e) => setCategory(e.target.value)}
+                                value={category}
+                                id="category"
+                                className="outline-none md:py-2.5 py-2 px-3 rounded border border-gray-500/40"
+                                required
+                            >
+                                <option value="">Select Category</option>
+                                <optgroup label="Health Picks Categories">
+                                    {healthPicksCategories.map((item, index) => (
+                                        <option key={"hp-"+index} value={item.path}>{item.text}</option>
+                                    ))}
+                                </optgroup>
+                                <optgroup label="Default Categories">
+                                    {defaultCategories.map((item, index) => (
+                                        <option key={"def-"+index} value={item.path}>{item.text}</option>
+                                    ))}
+                                </optgroup>
+                            </select>
+                        );
+                    })()}
                 </div>
                 <div className="flex items-center gap-5 flex-wrap">
                     <div className="flex-1 flex flex-col gap-1 w-32">
