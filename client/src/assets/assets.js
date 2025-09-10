@@ -80,9 +80,17 @@ import Snacks from "./Snacks.png";
 import Spices from "./Spices.png";
 import Biscuit from "./Biscuit.png";
 import Favicon1 from "./Favicon.png";
+import highprotein from "./highprotein.jpg";
+import dryfruits from "./dryfruits.png";
+import immunity from "./immunity.jpg";
+import weightloss from "./weightloss.jpg";
 
 
 export const assets = {
+  highprotein,
+  dryfruits,
+  immunity,
+  weightloss,
   Favicon1,
   logo,
   Chocolate,

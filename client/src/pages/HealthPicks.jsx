@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { useAppContext } from '../context/AppContext';
 import ProductCard from '../components/ProductCard';
+import { assets } from '../assets/assets';
 
 const HealthPicks = () => {
   const navigate = useNavigate();
@@ -12,30 +13,34 @@ const HealthPicks = () => {
     {
       id: 1,
       title: 'Healthy Food',
-      image: '/images/health/healthy-food.jpg',
+      image: assets.dryfruits,
       description: 'Nutritious and balanced meals for your daily wellness journey.',
-      category: 'healthy-food'
+      category: 'healthy-food',
+      bgColor: 'bg-green-50'
     },
     {
       id: 2,
       title: 'High Protein',
-      image: '/images/health/high-protein.jpg',
+      image: assets.highprotein,
       description: 'Quality protein sources for muscle health and recovery.',
-      category: 'high-protein'
+      category: 'high-protein',
+      bgColor: 'bg-orange-50'
     },
     {
       id: 3,
       title: 'Weight Loss',
-      image: '/images/health/weight-loss.jpg',
+      image: assets.weightloss,
       description: 'Smart food choices to support your weight management goals.',
-      category: 'weight-loss'
+      category: 'weight-loss',
+      bgColor: 'bg-yellow-50'
     },
     {
       id: 4,
       title: 'Immunity Boost',
-      image: '/images/health/immunity.jpg',
+      image: assets.immunity,
       description: 'Natural immunity boosters for your overall health.',
-      category: 'immunity'
+      category: 'immunity',
+      bgColor: 'bg-cyan-50'
     }
   ];
 
@@ -44,12 +49,15 @@ const HealthPicks = () => {
     ? products.filter(product => product.category === selectedCategory)
     : [];
 
+  // Get the background color for the selected category
+  const selectedBgColor = selectedCategory
+    ? healthCategories.find(cat => cat.category === selectedCategory)?.bgColor
+    : 'bg-white';
+
   return (
-    <div className="container mx-auto px-4 py-8">
-      <h1 className="text-3xl font-bold text-gray-800 mb-6">Health Picks</h1>
-      <p className="text-gray-600 mb-8 max-w-2xl">
-        Discover our curated selection of health-focused products designed to support your wellness journey.
-      </p>
+    <div className={`min-h-screen transition-colors duration-300 ${selectedBgColor}`}>
+      <div className="container mx-auto px-4 py-8">
+        <h1 className="text-3xl font-bold text-gray-800 mb-6">Health Picks</h1>
       
       {/* Categories Grid */}
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
@@ -125,6 +133,7 @@ const HealthPicks = () => {
             <h3 className="font-medium mb-2">Expert Guidance</h3>
             <p className="text-gray-600 text-sm">Detailed product information to make informed choices.</p>
           </div>
+        </div>
         </div>
       </div>
     </div>
