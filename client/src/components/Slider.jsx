@@ -5,7 +5,6 @@ const Slider = () => {
   const sliderRef = useRef(null);
   const [currentSlide, setCurrentSlide] = useState(0);
 
-
   // Array of slide objects with image, headline, subheadline, CTA text, and link
   const slides = [
     {
