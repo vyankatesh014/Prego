@@ -15,11 +15,12 @@ const Slider = () => {
       link: "/products/fruits"
     },
     {
-      image: assets.Slider_image2,
-      headline: "Dairy & Breakfast Essentials",
-      subheadline: "Start your day right with our quality dairy selection.",
-      cta: "Browse Dairy",
-      link: "/products/dairy"
+      image: assets.Slider_image5,
+      headline: "Organic & Healthy Picks",
+      subheadline: "Choose from a curated range of organic and healthy foods.",
+      cta: "Explore Health Picks",
+      link: "/health-picks"
+     
     },
     {
       image: assets.Slider_image3,
@@ -36,11 +37,11 @@ const Slider = () => {
       link: "/products/bakery"
     },
     {
-      image: assets.Slider_image5,
-      headline: "Organic & Healthy Picks",
-      subheadline: "Choose from a curated range of organic and healthy foods.",
-      cta: "Explore Health Picks",
-      link: "/health-picks"
+      image: assets.Slider_image2,
+      headline: "Dairy & Breakfast Essentials",
+      subheadline: "Start your day right with our quality dairy selection.",
+      cta: "Browse Dairy",
+      link: "/products/dairy"
     },
   ];
 
@@ -61,7 +62,7 @@ const Slider = () => {
     setCurrentSlide((prev) => (prev - 1 + totalSlides) % totalSlides);
   };
 
-  // Auto-slide every 3 seconds
+  // Auto-slide every 3 seconds 
   useEffect(() => {
     const slideInterval = setInterval(nextSlide, 3000);
     return () => clearInterval(slideInterval);
