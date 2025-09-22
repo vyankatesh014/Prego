@@ -53,7 +53,7 @@ const Navbar = () => {
             <NavLink
               to="/"
               className={({ isActive }) =>
-                `transition px-2 py-1 rounded ${isActive ? "text-primary font-semibold" : "text-gray-600 hover:text-primary"
+                `transition px-2 py-1 rounded text-lg ${isActive ? "text-primary font-semibold" : "text-gray-600 hover:text-primary"
                 }`
               }
             >
@@ -64,7 +64,7 @@ const Navbar = () => {
           <NavLink
             to="/health-picks"
             className={({ isActive }) =>
-              `transition px-2 py-1 rounded ${isActive ? "text-primary font-semibold" : "text-gray-600 hover:text-primary"
+              `transition px-2 py-1 rounded text-lg ${isActive ? "text-primary font-semibold" : "text-gray-600 hover:text-primary"
               }`
             }
           >
@@ -74,7 +74,7 @@ const Navbar = () => {
           <NavLink
             to="/products"
             className={({ isActive }) =>
-              `transition px-2 py-1 rounded ${isActive ? "text-primary font-semibold" : "text-gray-600 hover:text-primary"
+              `transition px-2 py-1 rounded text-lg ${isActive ? "text-primary font-semibold" : "text-gray-600 hover:text-primary"
               }`
             }
           >
@@ -82,10 +82,10 @@ const Navbar = () => {
           </NavLink>
 
           {/* Search */}
-          <div className="hidden lg:flex items-center text-sm gap-2 border border-gray-300 px-3 rounded-full">
+          <div className="hidden lg:flex items-center text-base gap-2 border border-gray-300 px-3 rounded-full">
             <input
               onChange={(e) => setSearchQuery(e.target.value)}
-              className="py-1.5 w-full bg-transparent outline-none placeholder-gray-500"
+              className="py-1.5 w-full bg-transparent outline-none placeholder-gray-500 text-base"
               type="text"
               placeholder="Search products"
             />
@@ -145,13 +145,13 @@ const Navbar = () => {
 
         {/* Mobile Dropdown */}
         {open && (
-          <div className="absolute top-[60px] left-0 w-full bg-white shadow-md py-4 flex flex-col items-start gap-2 px-5 text-sm md:hidden">
+          <div className="absolute top-[60px] left-0 w-full bg-white shadow-md py-4 flex flex-col items-start gap-2 px-5 text-base md:hidden">
             {location.pathname !== "/" && (
               <NavLink
                 to="/"
                 onClick={() => setOpen(false)}
                 className={({ isActive }) =>
-                  `transition px-2 py-1 rounded ${isActive ? "text-primary font-semibold" : "text-gray-600 hover:text-primary"
+                  `transition px-2 py-1 rounded text-lg ${isActive ? "text-primary font-semibold" : "text-gray-600 hover:text-primary"
                   }`
                 }
               >
@@ -163,7 +163,7 @@ const Navbar = () => {
               to="/health-picks"
               onClick={() => setOpen(false)}
               className={({ isActive }) =>
-                `transition px-2 py-1 rounded ${isActive ? "text-primary font-semibold" : "text-gray-600 hover:text-primary"
+                `transition px-2 py-1 rounded text-lg ${isActive ? "text-primary font-semibold" : "text-gray-600 hover:text-primary"
                 }`
               }
             >
@@ -174,7 +174,7 @@ const Navbar = () => {
               to="/products"
               onClick={() => setOpen(false)}
               className={({ isActive }) =>
-                `transition px-2 py-1 rounded ${isActive ? "text-primary font-semibold" : "text-gray-600 hover:text-primary"
+                `transition px-2 py-1 rounded text-lg ${isActive ? "text-primary font-semibold" : "text-gray-600 hover:text-primary"
                 }`
               }
             >
