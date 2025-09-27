@@ -81,7 +81,7 @@ import Spices from "./Spices.png";
 import Biscuit from "./Biscuit.png";
 import Favicon1 from "./Favicon.png";
 import highprotein from "./highprotein.jpg";
-import dryfruits from "./dryfruits.png";
+import dryfruits from "./dryfruits.jpg";
 import immunity from "./immunity.jpg";
 import weightloss from "./weightloss.jpg";
 
