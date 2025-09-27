@@ -43,7 +43,7 @@ const Navbar = () => {
   return (
     <header className="sticky top-0 z-50">
       {/* Top Navbar */}
-      <div className="flex items-center justify-between px-6 md:px-20 lg:px-32 xl:px-40 py-4 bg-white shadow-md border-b border-gray-200">
+      <div className="flex items-center justify-between px-6 md:px-20 lg:px-32 xl:px-40 py-4 navbar-bg shadow-md border-b border-gray-200">
         <NavLink to='/' onClick={() => setOpen(false)}>
           <img className="h-9" src={assets.logo} alt="logo" />
         </NavLink>
@@ -53,7 +53,7 @@ const Navbar = () => {
             <NavLink
               to="/"
               className={({ isActive }) =>
-                `transition px-2 py-1 rounded text-lg ${isActive ? "text-primary font-semibold" : "text-gray-600 hover:text-primary"
+                `transition px-2 py-1 rounded text-lg ${isActive ? "text-primary font-semibold" : "text-gray-800 hover:text-primary"
                 }`
               }
             >
@@ -64,7 +64,7 @@ const Navbar = () => {
           <NavLink
             to="/health-picks"
             className={({ isActive }) =>
-              `transition px-2 py-1 rounded text-lg ${isActive ? "text-primary font-semibold" : "text-gray-600 hover:text-primary"
+              `transition px-2 py-1 rounded text-lg ${isActive ? "text-primary font-semibold" : "text-gray-800 hover:text-primary"
               }`
             }
           >
@@ -74,7 +74,7 @@ const Navbar = () => {
           <NavLink
             to="/products"
             className={({ isActive }) =>
-              `transition px-2 py-1 rounded text-lg ${isActive ? "text-primary font-semibold" : "text-gray-600 hover:text-primary"
+              `transition px-2 py-1 rounded text-lg ${isActive ? "text-primary font-semibold" : "text-gray-800 hover:text-primary"
               }`
             }
           >
@@ -82,10 +82,10 @@ const Navbar = () => {
           </NavLink>
 
           {/* Search */}
-          <div className="hidden lg:flex items-center text-base gap-2 border border-gray-300 px-3 rounded-full">
+          <div className="hidden lg:flex items-center text-base gap-2 border border-gray-700 px-3 rounded-full w-80">
             <input
               onChange={(e) => setSearchQuery(e.target.value)}
-              className="py-1.5 w-full bg-transparent outline-none placeholder-gray-500 text-base"
+              className="py-1.5 w-full bg-transparent outline-none placeholder-gray-600 text-gray-800 text-base"
               type="text"
               placeholder="Search products"
             />
@@ -145,13 +145,13 @@ const Navbar = () => {
 
         {/* Mobile Dropdown */}
         {open && (
-          <div className="absolute top-[60px] left-0 w-full bg-white shadow-md py-4 flex flex-col items-start gap-2 px-5 text-base md:hidden">
+          <div className="absolute top-[60px] left-0 w-full navbar-bg shadow-md py-4 flex flex-col items-start gap-2 px-5 text-base md:hidden">
             {location.pathname !== "/" && (
               <NavLink
                 to="/"
                 onClick={() => setOpen(false)}
                 className={({ isActive }) =>
-                  `transition px-2 py-1 rounded text-lg ${isActive ? "text-primary font-semibold" : "text-gray-600 hover:text-primary"
+                  `transition px-2 py-1 rounded text-lg ${isActive ? "text-primary font-semibold" : "text-gray-800 hover:text-primary"
                   }`
                 }
               >
@@ -163,7 +163,7 @@ const Navbar = () => {
               to="/health-picks"
               onClick={() => setOpen(false)}
               className={({ isActive }) =>
-                `transition px-2 py-1 rounded text-lg ${isActive ? "text-primary font-semibold" : "text-gray-600 hover:text-primary"
+                `transition px-2 py-1 rounded text-lg ${isActive ? "text-primary font-semibold" : "text-gray-800 hover:text-primary"
                 }`
               }
             >
@@ -174,7 +174,7 @@ const Navbar = () => {
               to="/products"
               onClick={() => setOpen(false)}
               className={({ isActive }) =>
-                `transition px-2 py-1 rounded text-lg ${isActive ? "text-primary font-semibold" : "text-gray-600 hover:text-primary"
+                `transition px-2 py-1 rounded text-lg ${isActive ? "text-primary font-semibold" : "text-gray-800 hover:text-primary"
                 }`
               }
             >
@@ -185,7 +185,7 @@ const Navbar = () => {
               <NavLink
                 to="/my-orders"
                 onClick={() => setOpen(false)}
-                className="transition px-2 py-1 rounded text-gray-600 hover:text-primary"
+                className="transition px-2 py-1 rounded text-gray-800 hover:text-primary"
               >
                 My Orders
               </NavLink>
@@ -217,18 +217,19 @@ const Navbar = () => {
       {location.pathname !== '/health-picks' && (
         <nav className="bg-gray-100 px-6 md:px-20 lg:px-32 xl:px-40 py-3 flex items-center gap-6 text-sm font-medium border-b border-gray-200 overflow-x-auto">
           {[
-          { name: "Organic Veggies", path: "/products/vegetables" },
-          { name: "Fresh Fruits", path: "/products/fruits" },
-          { name: "Cold Drinks", path: "/products/drinks" },
-          { name: "Instant Food", path: "/products/instant" },
-          { name: "Dairy Products", path: "/products/dairy" },
-          { name: "Bakery & Breads", path: "/products/bakery" },
-          { name: "Grains", path: "/products/grains" },
-          {name : "Snacks", path: "/products/snacks" },
-          { name: "Tea & Coffee", path: "/products/tea" },
-          { name: "Chocolates", path: "/products/chocolates" },
-          { name: "Spices", path: "/products/spices" },
-          { name: "Biscuits & Cookies", path: "/products/Biscuits" }
+            { name: "Organic Veggies", path: "/products/vegetables" },
+            { name: "Fresh Fruits", path: "/products/fruits" },
+            { name: "Cold Drinks", path: "/products/drinks" },
+            { name: "Instant Food", path: "/products/instant" },
+            { name: "Dairy Products", path: "/products/dairy" },
+            { name: "Bakery & Breads", path: "/products/bakery" },
+            { name: "Grains", path: "/products/grains" },
+            { name: "Snacks", path: "/products/snacks" },
+            { name: "Tea & Coffee", path: "/products/tea" },
+            { name: "Chocolates", path: "/products/chocolates" },
+            { name: "Spices", path: "/products/spices" },
+            { name: "Biscuits & Cookies", path: "/products/Biscuits" }
+
           ].map((item) => (
             <NavLink
               key={item.path}
