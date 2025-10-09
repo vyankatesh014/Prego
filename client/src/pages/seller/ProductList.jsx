@@ -16,7 +16,7 @@ const ProductList = () => {
             }
         } catch (error) {
             toast.error(error.message)
-        }
+        } 
     }
   return (
     <div className="no-scrollbar flex-1 h-[95vh] overflow-y-scroll flex flex-col justify-between">
